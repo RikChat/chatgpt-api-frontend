@@ -155,16 +155,6 @@ box-shadow:
         border-radius: 6px;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
       }
-      
-.my-validation-message::before {
-  display: none;
-}
-
-.my-validation-message i {
-  margin: 0 .4em;
-  color: #f27474;
-  font-size: 1.4em;
-}
     </style>
   </head>
   <body>
@@ -193,20 +183,7 @@ box-shadow:
         let token = localStorage.getItem("openai-token");
         if (token) return token;
         
-        token = Swal.fire({
-  title:'Masukan Token Api RikChatBot Anda...',
-  input: 'text',
-  customClass: {
-    validationMessage: 'my-validation-message'
-  },
-  preConfirm: (value) => {
-    if (!value) {
-      Swal.showValidationMessage(
-        '<i class="fa fa-info-circle"></i> Your name is required'
-      )
-    }
-  }
-})
+        token = prompt("Masukan Token Api RikChatBot Anda!");
         if (token) {
             localStorage.getitem("openai-token", token);
             return token;
@@ -551,20 +528,3 @@ box-shadow:
     </script>
   </body>
 </html>
-
-
-
-
-          
-
-
-
-
-
-   
-              
-                
-              
-                    
-
-
