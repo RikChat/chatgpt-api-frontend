@@ -4,10 +4,14 @@
     <meta charset="utf-8" />
     <meta name="description" content="ChatGPT API Demo" />
     <meta name="viewport" content="width=device-width, height=device-height" />
-    <title>OpenAI Chat</title>
+    <title>RikChatBot Artificial Intelegen</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.3.4/dist/sweetalert2.all.min.js"></script>
     <style>
       * {
-        box-sizing: border-box;
+        margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: 0;
       }
       html,
       body,
@@ -18,6 +22,7 @@
         margin: 0;
         font-family: -apple-system, "system-ui", "Segoe UI Adjusted", "Segoe UI",
           "Liberation Sans", sans-serif;
+          background: #242A34;
       }
       pre {
         overflow-x: auto;
@@ -42,13 +47,22 @@
       header {
         position: relative;
         width: 100%;
-        height: 48px;
+        height: 65px;
         flex-shrink: 0;
         display: flex;
         justify-content: center;
         align-items: center;
         background-color: #333;
         color: white;
+        font-weight: bold;
+box-shadow:
+  2.8px 2.8px 2.2px rgba(0, 0, 0, 0.07),
+  6.7px 6.7px 5.3px rgba(0, 0, 0, 0.05),
+  12.5px 12.5px 10px rgba(0, 0, 0, 0.042),
+  22.3px 22.3px 17.9px rgba(0, 0, 0, 0.035),
+  41.8px 41.8px 33.4px rgba(0, 0, 0, 0.028),
+  100px 100px 80px rgba(0, 0, 0, 0.02)
+;
       }
       header > button {
         position: absolute;
@@ -97,18 +111,32 @@
         overflow-y: auto;
       }
       .chat-container {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        max-width: 768px;
-        margin: 0 auto;
-        overflow-wrap: break-word;
+  font-size: 14px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  margin-bottom: 30px;
       }
       .chat-container .message {
-        padding: 2px 16px;
+  background: #57DF6F;
+  border-radius: 15px;
+  padding: 15px;
+  
+  margin-bottom: 8px;
+  background: #57df6f;
+  border-radius: 15px;
+  
+  margin-left: 120px;
+  color: #1F252F;
+  font-weight: 550;
+  font-size: 16px;
       }
       .chat-container .assistant {
-        background-color: #f0f0f0;
+  background: #2F3845;
+  border-radius: 15px;
+  margin-left: 0px;
+  margin-bottom: 8px;
+  color: white;
+  font-weight: 550;
       }
       footer {
         width: 100%;
@@ -116,6 +144,7 @@
         display: flex;
         justify-content: center;
         border-top: 1px solid rgba(0, 0, 0, 0.1);
+        margin-left: 5px;
       }
       #input-box {
         width: 100%;
@@ -126,6 +155,16 @@
         border-radius: 6px;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
       }
+      
+.my-validation-message::before {
+  display: none;
+}
+
+.my-validation-message i {
+  margin: 0 .4em;
+  color: #f27474;
+  font-size: 1.4em;
+}
     </style>
   </head>
   <body>
@@ -151,14 +190,26 @@
     ></script>
     <script type="module">
       function getToken() {
-        // Try localStorage first
         let token = localStorage.getItem("openai-token");
         if (token) return token;
-
-        token = prompt("Please enter your OpenAI API key");
+        
+        token = Swal.fire({
+  title:'Masukan Token Api RikChatBot Anda...',
+  input: 'text',
+  customClass: {
+    validationMessage: 'my-validation-message'
+  },
+  preConfirm: (value) => {
+    if (!value) {
+      Swal.showValidationMessage(
+        '<i class="fa fa-info-circle"></i> Your name is required'
+      )
+    }
+  }
+})
         if (token) {
-          localStorage.setItem("openai-token", token);
-          return token;
+            localStorage.getitem("openai-token", token);
+            return token;
         }
       }
 
@@ -253,6 +304,7 @@
               key: index,
               dangerouslySetInnerHTML: {
                 __html: md.render(message.content || ""),
+                
               },
             });
           })
@@ -365,7 +417,7 @@
 
         return [
           React.createElement("header", { key: "header" }, [
-            React.createElement("span", { key: "title" }, "OpenAI Chat"),
+            React.createElement("span", { key: "title" }, "RikChatBot Artificial Intelegen"),
             React.createElement(
               "button",
               {
@@ -499,3 +551,20 @@
     </script>
   </body>
 </html>
+
+
+
+
+          
+
+
+
+
+
+   
+              
+                
+              
+                    
+
+
